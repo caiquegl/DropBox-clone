@@ -354,12 +354,14 @@ class DropBoxController {
 
         li.dataset.key = key;
 
-        return `
-                                <li>
-                                    ${this.getFileIconView(file)}
-                                    <div class="name text-center">${file.name}</div>
-                                </li>
-                `;
+        li.innerHTML = `
+                               
+        ${this.getFileIconView(file)}
+        <div class="name text-center">${file.name}</div>
+    
+        `
+
+        return li;
 
     };
 
@@ -374,9 +376,7 @@ class DropBoxController {
                 let key = snapshotItem.key;
                 let data = snapshotItem.val();
 
-                console.log(key, data);
-
-                this.listFilesEl.appendChild(this.getFileView(data));
+                this.listFilesEl.appendChild(this.getFileView(data, key));
 
             });
 
